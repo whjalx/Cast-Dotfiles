@@ -1,0 +1,30 @@
+window {
+    background-color: #222222aa;
+    border-radius: 12px;
+    padding: 15px;
+    color: #ffffff;
+    font-family: "FiraCode Nerd Font", monospace;
+}
+
+label.title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #444444;
+    border-radius: 8px;
+    padding: 6px;
+
+}
+window#dashboard {
+    width: 300px;
+    height: 400px;
+    margin-left: 100px;
+    margin-top: 100px;
+    background-color: #222222aa;
+    border-radius: 12px;
+}
+
+

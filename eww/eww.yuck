@@ -1,0 +1,11 @@
+(defwindow dashboard
+  :floating true
+  :visible false
+  :layer top
+  :monitor 0
+  (box :orientation "vertical"
+       :spacing 10
+       (label :text "󰍛 Dashboard")
+       (label :text "RAM: 0/0")
+       (label :text "CPU: 0%")
+       (label :text "Disco: 0 libres")) )
