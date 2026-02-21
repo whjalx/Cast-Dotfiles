@@ -62,13 +62,6 @@ El script hará lo siguiente para cada componente:
 3. Respaldará tus configuraciones existentes creando una copia `.bak`.
 4. Creará un **enlace simbólico** a tu carpeta real `~/.config`, manteniéndolos siempre sincronizados con tus últimos "commits".
 
-## 🔄 Cómo mantener sincronizado (sync_dots)
-
-Para simplificar guardar cambios localmente en este directorio para subirlos a GitHub, puedes correr:
-```bash
-./sync_dots.sh
-```
-Esto copiará recursivamente los cambios locales (`~/.config/...`) hacia `~/repos/cast-dotfiles` y automáticamente realizará un *commit y push* a tu rama `main`.
 
 ## 📌 Instalación Manual
 
