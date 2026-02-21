@@ -14,7 +14,7 @@ INDEX=$(( (INDEX + 1) % ${#FONDOS[@]} ))
 echo $INDEX > "$INDEX_FILE"
 
 # Cambiar fondo con transición circular
-swww img /home/jcast/wallpapers/img/f$INDEX.jpg --transition-type grow --transition-duration 0.8 --transition-fps 144 --transition-step 20
+feh --bg-fill /home/jcast/wallpapers/img/f$INDEX.jpg
 wal -n -i  /home/jcast/wallpapers/img/f$INDEX.jpg
-
+killall -q polybar; polybar main & 
 

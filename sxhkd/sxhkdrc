@@ -1,0 +1,86 @@
+# ░░ Variables
+super = Super
+terminal = alacritty
+launcher = rofi -show drun # Usamos Rofi en X11 en vez de Wofi
+browser = firefox
+editor = code
+filemanager = dolphin
+
+# ░░ Atajos de Sistema
+# Terminal
+super + @Return
+    kitty
+
+# Launcher
+super + space
+    rofi -show drun
+
+# Browser
+super + b
+    firefox
+
+# Editor
+super + c
+    code
+
+# File Manager
+super + d
+    $filemanager
+
+# Cerrar ventana (Kill active)
+super + q
+    bspc node -c
+
+# Fullscreen
+super + f
+    bspc node -t fullscreen
+
+# Toggle Floating y redimensionar (Simulando tu bind específico)
+super + v
+    bspc node -t ~floating; bspc node -z right 800 600
+
+# Salir de BSPWM
+super + m
+    bspc quit
+
+# Recargar configuración (BSPWM y SXHKD)
+super + r
+    bspc wm -r; pkill -USR1 -x sxhkd
+
+# Scripts personalizados
+super + shift + w
+    /home/jcast/.config/bspwm/chw.sh
+
+super + w
+    /home/jcast/.config/bspwm/chwf.sh
+
+super + s
+    kitty -e joshuto
+
+# Screenshot (Flameshot funciona igual en X11)
+super + shift + s
+    flameshot full -p ~/Pictures
+
+# Bloqueo de pantalla (Hyprlock es Wayland, usa Betterlockscreen o i3lock)
+super + l
+    betterlockscreen -l dim
+
+# Expo (Hyprexpo no existe nativo, rofi window es la alternativa visual)
+super + t
+    bspc node -t togle
+
+# ░░ Navegación y Movimiento
+# Mover foco (estilo vim)
+super + {_,shift + }{h,j,k,l}
+    bspc node -{f,s} {west,south,north,east}
+
+# Selección de escritorio (1-9, 0)
+super + {1-9,0}
+    bspc desktop -f ^{1-9,10}
+
+# Mover ventana a escritorio
+super + shift + {1-9,0}
+    bspc node -d ^{1-9,10}
+
+# Mover/Redimensionar ventanas flotantes con Mouse
+# (Esto se configura en bspwmrc con bspc config pointer_action1 move, etc., ya viene por defecto)

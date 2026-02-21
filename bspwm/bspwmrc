@@ -1,0 +1,49 @@
+#!/bin/sh
+
+# ░░ Autostart (Aplicaciones e inicio)
+pgrep -x sxhkd > /dev/null || sxhkd &  # Daemon de teclas
+killall -q polybar; polybar main &     # Barra (reemplazo de Waybar)
+picom -b                               # Compositor (Blur, redondeado)
+dunst &                                # Notificaciones
+nm-applet &                            # Red
+blueman-applet &                       # Bluetooth
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & # Polkit
+udiskie -t &                           # Reemplazo de rudiskie
+INDEX=$(cat "$INDEX_FILE")
+feh --bg-fill ~/wallpapers/img/f$INDEX.jpg & # Wallpaper (reemplazo hyprpaper)
+
+# Configuración de Pantalla (Equivalente a monitor=...)
+# En X11 usas xrandr. Ajusta "HDMI-A-0" al nombre real de tu salida (usa xrandr --query)
+xrandr --output HDMI-A-0 --mode 1920x1080 --rate 120 --primary
+
+# Configuración de Input (Teclado y Mouse)
+setxkbmap us -option caps:escape       # Layout US y Caps->Esc
+# Para el touchpad "natural scroll" y "tap to click" se requiere xinput o config en /etc/X11/
+
+# ░░ Configuración de Workspaces
+# Asignamos los escritorios del 1 al 10 al monitor principal
+bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+
+# ░░ Apariencia (Variables de Catppuccin Mocha)
+bspc config border_width         1
+bspc config window_gap           10     # Equivalente a gaps_in + gaps_out
+bspc config top_padding          0      # Ajustar si la barra tapa ventanas
+
+# Colores (Catppuccin Mocha)
+bspc config normal_border_color  "#45475a"  # Surface 1
+bspc config active_border_color  "#89b4fa"  # Blue
+bspc config focused_border_color "#89b4fa"  # Blue
+bspc config presel_feedback_color "#fab387" # Peach
+
+# ░░ Reglas de Ventanas (Layout Dwindle Simulado)
+# BSPWM es árbol binario, pero 'spiral' o 'dwindle' se siente similar
+bspc config automatic_scheme     spiral
+bspc config split_ratio          0.50
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config focus_follows_pointer true
+
+# Reglas específicas (Floating, etc)
+bspc rule -a "*" state=tiled
+bspc rule -a Pavucontrol state=floating
+bspc rule -a Blueman-manager state=floating
