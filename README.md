@@ -1,30 +1,53 @@
 # 🌟 Cast Dotfiles
 
-Welcome to my dotfiles repository! This configuration provides a modern, aesthetic, and highly functional setup centered around **Hyprland** (Wayland window manager).
+¡Bienvenido a mi repositorio de *dotfiles* (archivos de configuración)! Este repositorio provee configuraciones estéticas, modernas y altamente funcionales para entornos Wayland y X11.
 
-## 📦 Requirements
+Actualmente soporta dos configuraciones de escritorio principales:
+- **[Hyprland]** (Wayland) - Para una experiencia moderna y con animaciones fluidas.
+- **[BSPWM]** (X11) - Para un flujo de trabajo minimalista basado en el uso de teclado.
 
-To get the full experience, the following base packages are recommended:
-- **Window Manager:** [Hyprland](https://hyprland.org/), `hyprpaper`, `hyprlock`
+## 📦 Componentes Incluidos
+
+Dependiendo del entorno de escritorio que uses, puedes combinar las siguientes herramientas incluidas:
+
+### 🖥️ Gestores de Ventanas (Window Managers)
+- **Wayland:** [Hyprland](https://hyprland.org/), usa `hyprpaper` (para el fondo) e `hyprlock` (para la pantalla de bloqueo).
+- **X11:** [BSPWM](https://github.com/baskerville/bspwm)
+
+### 🚀 Lanzadores y Barras de Tareas
+- **Barras:** [Waybar](https://github.com/Alexays/Waybar) (para Hyprland) / [Polybar](https://github.com/polybar/polybar) (para BSPWM) / [Eww](https://elkowar.github.io/eww/) (Widgets)
+- **Lanzadores:** [Rofi](https://github.com/davatorium/rofi) / [Wofi](https://hg.sr.ht/~scoopta/wofi)
+
+### 💻 Terminal y Shell
 - **Terminal:** [Kitty](https://sw.kovidgoyal.net/kitty/)
 - **Shell:** [Fish](https://fishshell.com/)
+- **Prompt:** [Starship](https://starship.rs/)
+
+### 🛡️ Utilidades Core
 - **Editor:** [Neovim](https://neovim.io/)
-- **Bars & Widgets:** [Waybar](https://github.com/Alexays/Waybar), [Eww](https://elkowar.github.io/eww/)
-- **App Launchers:** [Rofi](https://github.com/davatorium/rofi) / [Wofi](https://hg.sr.ht/~scoopta/wofi)
-- **Colors:** [Pywal](https://github.com/dylanaraps/pywal)
-- **System Monitors:** [Btop](https://github.com/aristocratos/btop), [Htop](https://htop.dev/)
-- **CLI Utilities:** [Broot](https://dystroy.org/broot/), [Atuin](https://github.com/atuinsh/atuin)
-- **Audio Visualizer:** [Cava](https://github.com/karlstav/cava)
+- **Archivos:** [Ranger](https://github.com/ranger/ranger) / [Broot](https://dystroy.org/broot/)
+- **Sistema:** [Btop](https://github.com/aristocratos/btop) / [Htop](https://htop.dev/) / [Fastfetch](https://github.com/fastfetch-cli/fastfetch) / [Neofetch](https://github.com/dylanaraps/neofetch)
+- **Historial CLI:** [Atuin](https://github.com/atuinsh/atuin)
 
-> **Note:** These configurations are primarily built and tested on Arch Linux. If you are on a different distribution, ensure package names correspond to your distro's package manager.
+### 🎨 Personalización y Media
+- **Colores:** [Pywal](https://github.com/dylanaraps/pywal)
+- **Visualizador de Audio:** [Cava](https://github.com/karlstav/cava)
+- **Apariencia GTK:** [NWG-Look](https://github.com/nwg-piotr/nwg-look)
+- **Video:** [MPV](https://mpv.io/)
 
-## 🚀 Installation
+### ⚙️ Otras Herramientas y Daemons
+- **Atajos Teclado (X11):** [SXHKD](https://github.com/baskerville/sxhkd)
+- **Notificaciones (Wayland):** [SwayNC](https://github.com/ErikReider/SwayNotificationCenter)
+- **Apagado (Wayland):** [Wlogout](https://github.com/ArtsyMacaw/wlogout)
+- **Capturas:** [Flameshot](https://flameshot.org/)
 
-This repository includes a convenient, semi-automatic interactive installation script. 
+> **Nota:** La mayoría de configuraciones están pensadas para instalaciones base como Arch Linux (con gestores de dependencias como `yay` o `pacman`).
 
-### Interactive Script (Recommended)
+---
 
-Run the script to choose exactly which components to configure and install:
+## 🚀 Instalación Automática Interactiva (Recomendado)
+
+El repositorio cuenta con un instalador en bash interactivo y modular. Ejecútalo para elegir qué partes deseas instalar y configurar en tiempo real.
 
 ```bash
 git clone https://github.com/whjalx/cast-dotfiles.git ~/repos/cast-dotfiles
@@ -33,18 +56,26 @@ chmod +x install.sh
 ./install.sh
 ```
 
-The script will walk you through each available component:
-1. Ask if you want to setup the component (`y/n`).
-2. Automatically attempt to install dependencies using `yay` or `pacman`.
-3. Backup your existing configurations to `~/.config/<app>.bak`.
-4. Create symbolic links from this repo to your `~/.config/<app>` folder.
+El script hará lo siguiente para cada componente:
+1. Te preguntará si deseas instalarlo o saltártelo (Ej: `"¿Deseas instalar y configurar Kitty? (s/n)"`).
+2. Descargará las dependencias de dicho programa utilizando `yay` (o `pacman`).
+3. Respaldará tus configuraciones existentes creando una copia `.bak`.
+4. Creará un **enlace simbólico** a tu carpeta real `~/.config`, manteniéndolos siempre sincronizados con tus últimos "commits".
 
-### Manual Installation
+## 🔄 Cómo mantener sincronizado (sync_dots)
 
-If you prefer to manually link specific directories rather than using the script, you can simply create a symlink from the repository to your `~/.config` directory:
+Para simplificar guardar cambios localmente en este directorio para subirlos a GitHub, puedes correr:
+```bash
+./sync_dots.sh
+```
+Esto copiará recursivamente los cambios locales (`~/.config/...`) hacia `~/repos/cast-dotfiles` y automáticamente realizará un *commit y push* a tu rama `main`.
 
+## 📌 Instalación Manual
+
+Si prefieres añadir los dotfiles a tu carpeta de configuraciones de forma manual, puedes hacerlo enlazándolos individualmente:
 ```bash
 ln -s ~/repos/cast-dotfiles/kitty ~/.config/kitty
-ln -s ~/repos/cast-dotfiles/hypr ~/.config/hypr
-# Repeat for other applications...
+ln -s ~/repos/cast-dotfiles/bspwm ~/.config/bspwm
+ln -s ~/repos/cast-dotfiles/polybar ~/.config/polybar
+# Repite este proceso para otras aplicaciones que utilices...
 ```
